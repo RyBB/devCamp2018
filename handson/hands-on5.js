@@ -1,14 +1,17 @@
+// ①まずはお約束の即時関数 + 厳格モード記述
 (function() {
   'use strict';
 
-  // レコード追加イベント
+  // ② kintone JS APIの記述
+  // レコード追加時の保存イベント
   kintone.events.on('app.record.create.submit', function(event) {
-    var record = event.record;
 
+    // ③ リクエストボディの記述
     var params = {
       app: event.appId,
       query: '作成者 in (LOGINUSER()) and 作成日時 = TODAY()'
     }
+    // ③ kintone REST APIの記述
     return kintone.api(kintone.api.url('/k/v1/records'), 'GET', params)
     .then(function(resp) {
       if (!resp.records.length) {
