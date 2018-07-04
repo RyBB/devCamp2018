@@ -15,7 +15,7 @@
     return kintone.api(kintone.api.url('/k/v1/records'), 'GET', params)
     .then(function(resp) {
       if (!resp.records.length) {
-        return;g
+        return;
       }
       event.error = 'すでに本日分のレコードが登録されています！';
       return event;
