@@ -1,4 +1,3 @@
-// const moment = require('moment');
 jQuery.noConflict();
 ($ => {
   'use strict';
