@@ -1,11 +1,6 @@
 (function() {
   'use strict';
 
-  var obj = {
-    user: '作成者',
-    intime: '出勤時間',
-    outtime: '退勤時間'
-  };
   // レコード追加イベント
   kintone.events.on('app.record.create.submit', function(event) {
     var record = event.record;
