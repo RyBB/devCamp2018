@@ -12,6 +12,7 @@
       query: '作成者 in (LOGINUSER()) and 作成日時 = TODAY()'
     }
     // ③ kintone REST APIの記述
+    // REST APIは非同期処理になるため、Promiseを利用する
     return kintone.api(kintone.api.url('/k/v1/records'), 'GET', params)
     .then(function(resp) {
       if (!resp.records.length) {
