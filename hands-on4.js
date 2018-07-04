@@ -7,11 +7,10 @@
 
     // ③ リクエストボディの記述
     var body = {
-      app: 293, // アプリIDを記述
-      id: 1 // レコードIDを記述
+      app: 293 // アプリIDを記述
     };
     // ③ kintone REST APIの記述：レコード1件取得
-    kintone.api(kintone.api.url('/k/v1/record'),'GET', body, function(resp) {
+    kintone.api(kintone.api.url('/k/v1/records'),'GET', body, function(resp) {
       console.log(resp);
     });
   });
