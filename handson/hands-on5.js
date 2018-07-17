@@ -1,29 +1,28 @@
-// ①まずはお約束の即時関数 + 厳格モード記述
 (function() {
   'use strict';
 
-  // ② kintone JS APIの記述
-  // レコード追加時の保存イベント
-  kintone.events.on('app.record.create.submit', function(event) {
+  // 郵便番号フィールドが変更されたイベント
+  kintone.events.on(['app.record.create.change.zipcode', 'app.record.edit.change.zipcode'], function(event) {
+    var record = event.record;
+    var ZIPCODE = record['zipcode'].value;
 
-    // ③ リクエストボディの記述
-    var params = {
-      app: event.appId,
-      query: '作成者 in (LOGINUSER()) and 作成日時 = TODAY()'
-    }
-    // ③ kintone REST APIの記述
-    // REST APIは非同期処理になるため、Promiseを利用する
-    return kintone.api(kintone.api.url('/k/v1/records'), 'GET', params)
-    .then(function(resp) {
-      if (!resp.records.length) {
+    // 郵便番号APIの情報
+    var URL = 'http://zipcloud.ibsnet.co.jp/api/search?zipcode=' + ZIPCODE;
+
+    // 外部APIを実行する：リクエスト
+    kintone.proxy(URL, 'GET', {}, {}).then(function(resp) {
+      var res = JSON.parse(resp[0])
+      if (!res.results) {
         return;
       }
-      event.error = 'すでに本日分のレコードが登録されています！';
-      return event;
-    }).catch(function(err) {
-      event.error = 'REST APIの操作に失敗しました\n' + err.code + '\n' + err.message;
-      return event;
+      record['address1'].value = res.results[0].address1;
+      record['address2'].value = res.results[0].address2;
+      record['address3'].value = res.results[0].address3;
+
+      // イベントハンドラーがすでに終わっているので意図的にeventを返す
+      kintone.app.record.set(event);
+    }, function(err) {
+      window.alert(err);
     });
   });
 })();
-
