@@ -9,7 +9,7 @@
 
     // ③ リクエストボディの記述
     var body = {
-      app: 318, // ハンズオン①アプリのアプリID
+      app: <アプリID>, // ハンズオン①アプリのアプリID
       record: {
         'text': {
           'value': textValue

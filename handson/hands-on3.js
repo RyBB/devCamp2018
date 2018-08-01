@@ -5,7 +5,7 @@
   kintone.events.on('app.record.create.show', function(event) {
     // ③ リクエストボディの記述
     var body = {
-      app: 318,
+      app: <アプリID>,
       id: 1
     };
     // ③ kintone REST APIの記述：レコード1件取得
