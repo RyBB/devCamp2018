@@ -7,17 +7,17 @@ const INTERVAL = 5000;
 const sensor = new i2c(ADDRESS, {device: '/dev/i2c-1'});
 
 // kintoneの設定
-var DOMAIN = '{subdomain}.cybozu.com';
-var URL = 'https://' + DOMAIN + '/k/v1/record.json';
-var APP_ID = '{APP ID}}}';
-var API_TOKEN = '{API Token}';
-var headers = {'X-Cybozu-API-Token': API_TOKEN};
+const DOMAIN = '{subdomain}.cybozu.com';
+const URL = 'https://' + DOMAIN + '/k/v1/record.json';
+const APP_ID = '{APP ID}}}';
+const API_TOKEN = '{API Token}';
+const headers = {'X-Cybozu-API-Token': API_TOKEN};
 
 // read from ADT7410
 const readValue = () => {
   return new Promise(resolve => {
     sensor.readBytes(0x00, 2, (err, data)=> {
-      var temp;
+      let temp;
       temp = (data[0] << 8 | data[1]) >> 3;
         if (temp >= 4096) {
           temp -= 8192;
@@ -30,7 +30,7 @@ const readValue = () => {
 };
 // post kintone
 const postkintone = value => {
-  var body = {
+  const body = {
     'app': APP_ID,
     'record': {
       'temp': {
@@ -38,7 +38,7 @@ const postkintone = value => {
       }
     }
   };
-  var options = {
+  const options = {
     method: 'POST',
     url: URL,
     headers: headers,
