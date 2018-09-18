@@ -10,8 +10,9 @@
     var URL = 'http://zipcloud.ibsnet.co.jp/api/search?zipcode=' + ZIPCODE;
 
     // 外部APIを実行する：リクエスト
-    kintone.proxy(URL, 'GET', {}, {}).then(function(resp) {
-      var res = JSON.parse(resp[0])
+    kintone.proxy(URL, 'GET', {}, {})
+    .then(function(resp) {
+      var res = JSON.parse(resp[0]);
       if (!res.results) {
         return;
       }
@@ -21,7 +22,8 @@
 
       // イベントハンドラーがすでに終わっているので意図的にeventを返す
       kintone.app.record.set(event);
-    }, function(err) {
+    })
+    .catch(function(err) {
       window.alert(err);
     });
   });

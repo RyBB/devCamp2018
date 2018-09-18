@@ -1,9 +1,9 @@
 // ①まずはお約束の即時関数 + 厳格モード記述
 (function() {
   'use strict';
-  // ② kintone JS APIの記述
+  // ② kintone JS APIの記述
   kintone.events.on('app.record.create.show', function(event) {
-    // ③ リクエストボディの記述
+    // ③ リクエストボディの記述
     var body = {
       app: <アプリID>,
       id: 1
