@@ -1,6 +1,5 @@
-# kintone devCamp2018
+# kintone devCamp 2018
 
-2018/08/02 <br>
 kintone REST APIハンズオンのサンプルコードです。
 
 ## handsonディレクトリ
