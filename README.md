@@ -2,9 +2,13 @@
 
 kintone REST APIハンズオンのサンプルコードです。
 
-## handsonディレクトリ
+## hands-on_practice ディレクトリ
 
 本セッションで行うハンズオンのコードがあります。
+
+## hands-on_answer ディレクトリ
+
+本セッションで行うハンズオンの回答コードがあります。
 
 ### hands-on1.sh
 
