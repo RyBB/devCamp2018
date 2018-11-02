@@ -8,8 +8,8 @@
     var textValue = event.record['text3'].value;
 
     // ③ リクエストボディの記述
-    var body = {
-      app: <アプリID>, // ハンズオン①アプリのアプリID
+    var params = {
+      app: '<アプリID>', // ハンズオン①アプリのアプリID
       record: {
         'text': {
           'value': textValue
@@ -17,7 +17,7 @@
       }
     };
     // ③ kintone REST APIの記述：レコード1件登録
-    kintone.api(kintone.api.url('/k/v1/record'),'POST', body, function(resp) {
+    kintone.api(kintone.api.url('/k/v1/record'),'POST', params, function(resp) {
       window.alert('POST成功しました！');
     }, function(err) {
       window.alert('POST失敗しました');
