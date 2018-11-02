@@ -30,11 +30,11 @@
         reject();
         return;
       }
-      const body = {
+      const params = {
         app: targetAppId,
         id: targetRecordId,
       };
-      kintone.api(kintone.api.url('/k/v1/record'), 'GET', body, resp => {
+      kintone.api(kintone.api.url('/k/v1/record'), 'GET', params, resp => {
         resolve(resp);
       }, err => {
         window.alert('REST APIでエラーが発生しました\n'+ err.code + '\n' + err.message);

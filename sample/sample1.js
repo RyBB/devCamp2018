@@ -30,7 +30,7 @@ const readValue = () => {
 };
 // post kintone
 const postkintone = value => {
-  const body = {
+  const params = {
     'app': APP_ID,
     'record': {
       'temp': {
@@ -43,7 +43,7 @@ const postkintone = value => {
     url: URL,
     headers: headers,
     'Content-Type': 'application/json',
-    json: body
+    json: params
   };
   request(options, err =>{
     if (err) {
